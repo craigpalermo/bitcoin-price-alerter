@@ -2,6 +2,7 @@
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 from price_alerter import PriceAlerter
+from clients.coinbase import get_bitcoin_sell_price
 
 import argparse
 
@@ -21,8 +22,17 @@ def main():
     if min is not None or max is not None:
         min_limit = float(min_limit[0]) if min_limit is not None else 0
         max_limit = float(max_limit[0]) if max_limit is not None else float("inf")
+
+        if max_limit <= min_limit:
+            print("Max must be greater than min limit. Exiting.")
+            return
+
         alerter = PriceAlerter(recipient_phone, min_limit, max_limit)
         print("Bitcoin price alert now running. Min: {:.2f}, Max: {:.2f}".format(min_limit, max_limit))
+
+        # Display current sell price
+        current_sell_price, currency = get_bitcoin_sell_price()
+        print("Current BTC sell price: {:.2f} {}".format(current_sell_price, currency))
 
         # Create blocking scheduler to run on interval
         try:
