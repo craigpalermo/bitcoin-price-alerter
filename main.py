@@ -16,11 +16,12 @@ parser.add_argument('--phone', dest='recipient_phone', nargs=1, help='Recipient 
 def main():
     args = parser.parse_args()
     min_limit, max_limit = args.min_limit, args.max_limit
+    recipient_phone = args.recipient_phone[0]
 
     if min is not None or max is not None:
         min_limit = float(min_limit[0]) if min_limit is not None else 0
         max_limit = float(max_limit[0]) if max_limit is not None else float("inf")
-        alerter = PriceAlerter(args.recipient_phone, min_limit, max_limit)
+        alerter = PriceAlerter(recipient_phone, min_limit, max_limit)
         print("Bitcoin price alert now running. Min: {:.2f}, Max: {:.2f}".format(min_limit, max_limit))
 
         # Create blocking scheduler to run on interval
