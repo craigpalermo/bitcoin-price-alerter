@@ -30,5 +30,7 @@ To start the daemon:
 The program will check the price of Bitcoin every 10 minutes.
 
 ## TODO
+- Allow settings to be provided via both environment variables and in a Python module
+- Add command to test API connections to Coinbase and Twilio
 - Don't continue alerting if price remains out of bounds over multiple
 polls
