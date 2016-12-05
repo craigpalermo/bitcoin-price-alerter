@@ -15,7 +15,6 @@ class PriceAlerter(object):
         :return:
         """
         amount, currency = get_bitcoin_sell_price()
-        amount = float(amount)
 
         if not self.min_limit <= amount <= self.max_limit:
             message = "Alert: Current price of 1 BTC is {:.2f} {}".format(amount, currency)
