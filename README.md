@@ -3,6 +3,12 @@
 This is a daemon that will send an SMS text message when the sell price
 of Bitcoin goes above or below the given limits.
 
+**APIs Used:**
+
+- [Coinbase Wallet API](https://developers.coinbase.com/docs/wallet/guides/price-data)
+- [Twilio REST API](https://www.twilio.com/docs/api/rest/sending-messages)
+
+
 ## Setup
 Be sure to install packages defined in `requirements.txt` before
 running.
